@@ -123,7 +123,6 @@ public class CidadeRepositorio extends DaoUtil implements ICidade{
             PreparedStatement ps = super.getPreparedStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                //PaisDto pais = paisrep.getRegistroPorId(rs.getInt("pais_id"));
                 cidades.add(new CidadeDto(rs.getInt("cidade_id"),rs.getString("cidade"),paisrep.getRegistroPorId(rs.getInt("pais_id")),rs.getTimestamp("ultima_atualizacao")) );
             }
             rs.close();

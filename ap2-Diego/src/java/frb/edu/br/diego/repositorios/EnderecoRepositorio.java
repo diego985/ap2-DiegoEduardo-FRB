@@ -134,7 +134,7 @@ public class EnderecoRepositorio extends DaoUtil implements IEndereco{
             ResultSet rs = ps.executeQuery(sql);
             
             while(rs.next()){
-                //CidadeDto cidade = cidaderep.getRegistroPorId(rs.getInt("cidade_id"));
+                
                 enderecos.add( new EnderecoDto(rs.getInt("endereco_id"), rs.getString("endereco"), rs.getString("endereco2"), rs.getString("bairro"), cidaderep.getRegistroPorId(rs.getInt("cidade_id")), rs.getString("cep"), rs.getString("telefone"), rs.getTimestamp("ultima_atualizacao")) );
             }
             
