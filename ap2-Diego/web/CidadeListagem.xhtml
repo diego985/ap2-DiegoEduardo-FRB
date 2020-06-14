@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Sistema da Ap2 - Desenv. Software - Diego</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"></link>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css"></link>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="DiegoCSS.css"></link>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <h:form>
+                        <h1>Listagem de Cidades</h1>
+                        <h:commandButton value="Voltar" action="voltaParaIndex"/>&nbsp;            
+                        <h:commandButton value="Cadastrar Cidade" action="#{cidadeController.preparaInclusao()}"/>
+                        <br/><br/>
+                        <h:dataTable class="tabelas table table-striped table-bordered" var="umaCidade" value="#{cidadeController.cidades}">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="COD" />
+                                </f:facet>
+                                <h:outputLabel value="#{umaCidade.cidade_id}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="CIDADE" />
+                                </f:facet>
+                                <h:outputLabel value="#{umaCidade.cidade}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="PAÍS" />
+                                </f:facet>
+                                <h:outputLabel value="#{umaCidade.pais.pais}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="ATUALIZAÇÃO" />
+                                </f:facet>
+                                <h:outputLabel value="#{umaCidade.ultima_atualizacao}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="OPÇÕES" />
+                                </f:facet>
+
+                                <h:commandLink value="Editar" action="vaiParaEditar">
+                                    <f:setPropertyActionListener target="#{cidadeController.cidade}" value="#{umaCidade}" />
+                                </h:commandLink>
+
+                                <h:outputLabel value="|"/>
+
+                                <h:commandLink value="Excluir" action="#{cidadeController.finalizaDelecao()}">
+                                    <f:setPropertyActionListener target="#{cidadeController.cidade}" value="#{umaCidade}" />
+                                </h:commandLink>
+
+
+                            </h:column>
+
+                        </h:dataTable>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    
+    <script type="text/javascript" charset="utf8">
+    
+        $(document).ready( function () {
+            $('.tabelas').DataTable();
+        });
+    
+    </script>
+</html>
+
